@@ -3,43 +3,63 @@
 <html>
 <head>
 <title>Smart Parking Locator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+font-family:Arial;
+text-align:center;
+margin-top:40px;
+}
+
+button{
+padding:12px 20px;
+font-size:18px;
+margin:10px;
+}
+</style>
+
 </head>
 
-<body style="text-align:center;font-family:Arial">
+<body>
 
-<h2>Smart Parking Locator 🚗</h2>
+<h1>Smart Parking Locator 🚗</h1>
 
-<h3 id="parking"></h3>
+<h3 id="slot"></h3>
 
-<button onclick="save()">Save My Parking</button> <button onclick="find()">Find My Car</button>
+<button onclick="saveParking()">Save My Parking</button> <br> <button onclick="navigate()">Navigate to My Car</button>
 
-<h3 id="result"></h3>
+<h3 id="msg"></h3>
 
 <script>
 
-// read slot from QR code URL
 const params = new URLSearchParams(window.location.search);
+
+const lat = params.get("lat");
+const lng = params.get("lng");
 const slot = params.get("slot");
 
-if(slot){
-document.getElementById("parking").innerHTML =
+document.getElementById("slot").innerHTML =
 "Parking Slot: " + slot;
-}
 
-function save(){
+function saveParking(){
 
-localStorage.setItem("parkingLocation", slot);
+localStorage.setItem("carLat",lat);
+localStorage.setItem("carLng",lng);
+localStorage.setItem("carSlot",slot);
 
-document.getElementById("result").innerHTML =
+document.getElementById("msg").innerHTML =
 "Parking location saved!";
 }
 
-function find(){
+function navigate(){
 
-let location = localStorage.getItem("parkingLocation");
+let lat = localStorage.getItem("carLat");
+let lng = localStorage.getItem("carLng");
 
-document.getElementById("result").innerHTML =
-"Your car is parked at: " + location;
+window.open(
+"https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng
+);
 
 }
 
