@@ -6,16 +6,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+
 body{
-font-family:Arial;
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
 text-align:center;
-margin-top:40px;
+}
+
+.container{
+margin-top:80px;
+background:white;
+color:#333;
+width:90%;
+max-width:400px;
+margin-left:auto;
+margin-right:auto;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+font-size:28px;
+margin-bottom:20px;
+}
+
+.slot{
+font-size:20px;
+font-weight:bold;
+margin-bottom:20px;
 }
 
 button{
-padding:12px 20px;
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.save{
+background:#28a745;
+color:white;
+}
+
+.maps{
+background:#007bff;
+color:white;
+}
+
+.guide{
+background:#ff9800;
+color:white;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.message{
+margin-top:20px;
 font-size:18px;
-margin:10px;
 }
 
 </style>
@@ -24,17 +80,21 @@ margin:10px;
 
 <body>
 
-<h1>Smart Parking Locator 🚗</h1>
+<div class="container">
 
-<h3 id="slot"></h3>
+<h1>🚗 Smart Parking Locator</h1>
 
-<button onclick="saveParking()">Save My Parking</button> <br><br>
+<div class="slot" id="slot"></div>
 
-<button onclick="navigateMaps()">Navigate with Google Maps</button> <br>
+<button class="save" onclick="saveParking()">Save My Parking</button>
 
-<button onclick="mallGuide()">Mall Parking Guide</button>
+<button class="maps" onclick="navigateMaps()">Navigate with Google Maps</button>
 
-<h3 id="msg"></h3>
+<button class="guide" onclick="mallGuide()">Mall Parking Guide</button>
+
+<div class="message" id="msg"></div>
+
+</div>
 
 <script>
 
@@ -54,7 +114,7 @@ localStorage.setItem("carLng",lng);
 localStorage.setItem("carSlot",slot);
 
 document.getElementById("msg").innerHTML =
-"Parking location saved successfully!";
+"✅ Parking location saved!";
 }
 
 function navigateMaps(){
@@ -71,7 +131,7 @@ window.open(
 }else{
 
 document.getElementById("msg").innerHTML =
-"Please save parking first.";
+"⚠️ Please save parking first.";
 
 }
 
@@ -90,7 +150,7 @@ document.getElementById("msg").innerHTML =
 }else{
 
 document.getElementById("msg").innerHTML =
-"Please press 'Save My Parking' first.";
+"⚠️ Please press 'Save My Parking' first.";
 
 }
 
