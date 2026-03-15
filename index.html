@@ -54,7 +54,7 @@ localStorage.setItem("carLng",lng);
 localStorage.setItem("carSlot",slot);
 
 document.getElementById("msg").innerHTML =
-"Parking location saved!";
+"Parking location saved successfully!";
 }
 
 function navigateMaps(){
@@ -62,9 +62,18 @@ function navigateMaps(){
 let lat = localStorage.getItem("carLat");
 let lng = localStorage.getItem("carLng");
 
+if(lat && lng){
+
 window.open(
 "https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng
 );
+
+}else{
+
+document.getElementById("msg").innerHTML =
+"Please save parking first.";
+
+}
 
 }
 
@@ -72,9 +81,18 @@ function mallGuide(){
 
 let slot = localStorage.getItem("carSlot");
 
+if(slot){
+
 document.getElementById("msg").innerHTML =
-"Your car is parked at: " + slot +
+"🚗 Your car is parked at: "+slot+
 "<br>Go to that basement floor and follow the slot number.";
+
+}else{
+
+document.getElementById("msg").innerHTML =
+"Please press 'Save My Parking' first.";
+
+}
 
 }
 
