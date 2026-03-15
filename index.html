@@ -17,6 +17,7 @@ padding:12px 20px;
 font-size:18px;
 margin:10px;
 }
+
 </style>
 
 </head>
@@ -27,7 +28,11 @@ margin:10px;
 
 <h3 id="slot"></h3>
 
-<button onclick="saveParking()">Save My Parking</button> <br> <button onclick="navigate()">Navigate to My Car</button>
+<button onclick="saveParking()">Save My Parking</button> <br><br>
+
+<button onclick="navigateMaps()">Navigate with Google Maps</button> <br>
+
+<button onclick="mallGuide()">Mall Parking Guide</button>
 
 <h3 id="msg"></h3>
 
@@ -52,7 +57,7 @@ document.getElementById("msg").innerHTML =
 "Parking location saved!";
 }
 
-function navigate(){
+function navigateMaps(){
 
 let lat = localStorage.getItem("carLat");
 let lng = localStorage.getItem("carLng");
@@ -60,6 +65,16 @@ let lng = localStorage.getItem("carLng");
 window.open(
 "https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng
 );
+
+}
+
+function mallGuide(){
+
+let slot = localStorage.getItem("carSlot");
+
+document.getElementById("msg").innerHTML =
+"Your car is parked at: " + slot +
+"<br>Go to that basement floor and follow the slot number.";
 
 }
 
